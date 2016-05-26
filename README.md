@@ -1,4 +1,6 @@
 # godux <br/>
+
+[![Join the chat at https://gitter.im/luisvinicius167/godux](https://badges.gitter.im/luisvinicius167/godux.svg)](https://gitter.im/luisvinicius167/godux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > State Management for Go Backend applications inspired in Redux.
 
 <p align="center">
@@ -20,13 +22,13 @@
 ### Data Flow
 **godux** turns your data flow unidirectional:
 
-* Create actions, like pure functions.
-* Store dispatch the action.
+* Create actions as pure functions.
+* The Store dispatches actions.
 * Return new Value based on your Store State.
 
 ### Principles:
 * Application State is held in the store, as a single map.
-* State are ready-only
+* State is ready-only.
 * Changes are made with pure functions.
 
 ### Store:
@@ -39,7 +41,7 @@ A Store is basically a container that holds your application state.
 ```
 
 #### Action
-Actions are just pure function. Your Actions functions always return a godux.Action. 
+Actions are just pure functions. Your Actions functions always return a godux.Action. 
 
 ```go
     increment := func(number int) godux.Action {
@@ -67,7 +69,7 @@ Like Redux Concept: "Actions describe the fact that something happened, but donâ
 	store.Reducer(reducer)
 ```
 #### Dispatch
-Dispatch the an action is very easy.
+Dispatch an action is very easy.
 ```go
     // Receive new value
 	newCount := store.Dispatch(increment(1)) // return 2
@@ -79,10 +81,10 @@ Dispatch the an action is very easy.
   * `` godux.newStore() ```: Create a single store with the state of your application.
   * `` godux.SetState(name string, value interface{}) ```: Sets the state store.
   * `` godux.GetState(name string) ```: Return your Store state value.
-  * `` godux.GetAllState() ```: Return all state value like a map type.
+  * `` godux.GetAllState() ```: Return whole state as a map.
 
 * #### Store Reducer:
-  * ``` store.Reducer(func(action godux.Action)) ```: Add the reducer function in your Store.
+  * ``` store.Reducer(func(action godux.Action)) ```: Add the reducer function to your Store.
 
 * #### Store Dispatch:
   * ``` store.Dispatch(action godux.Action) ```: Dispatch your action to your Reducer.
