@@ -13,18 +13,24 @@ func TestStoreStateCount(t *testing.T) {
 func TestActionType(t *testing.T) {
 	store := NewStore()
 	store.Setstate("count", 1)
-	action := Action{}
-	action.CreateAction("INCREMENT")
-	reductor := func(actionType string) interface{} {
-		switch actionType {
+
+	increment := func(number int) Action {
+		return Action{
+			Type:  "INCREMENT",
+			Value: number,
+		}
+	}
+
+	reductor := func(action Action) interface{} {
+		switch action.Type {
 		case "INCREMENT":
-			return store.GetState("count").(int) + 1
+			return store.GetState("count").(int) + action.Value.(int)
 		default:
 			return store.GetAllState()
 		}
 	}
 	store.Reductor(reductor)
-	value := store.Dispatch("INCREMENT")
+	value := store.Dispatch(increment(1))
 	if value != 2 {
 		t.Error("The value are different. Action not correct.")
 	}

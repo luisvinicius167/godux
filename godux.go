@@ -13,12 +13,13 @@ type Store struct{}
 
 type storeState struct {
 	state    map[string]interface{}
-	reductor func(acton string) interface{}
+	reductor func(action Action) interface{}
 }
 
 // Action that you create to change the State
 type Action struct {
-	Type map[string]string
+	Type  string
+	Value interface{}
 }
 
 var storestate *storeState
@@ -31,7 +32,7 @@ func NewStore() *Store {
 
 // Reductor is a function that you use to return new value based on your storeState.
 // Your state don't will be changed.
-func (s *Store) Reductor(callback func(actionName string) interface{}) {
+func (s *Store) Reductor(callback func(action Action) interface{}) {
 	storestate.reductor = callback
 }
 
@@ -44,18 +45,8 @@ func (s *Store) Setstate(name string, value interface{}) {
 }
 
 // Dispatch trigger your action type
-func (s *Store) Dispatch(actionType string) interface{} {
+func (s *Store) Dispatch(actionType Action) interface{} {
 	return storestate.reductor(actionType)
-}
-
-// CreateAction Create an action with the action type name
-func (action *Action) CreateAction(names ...string) {
-	if len(action.Type) == 0 {
-		action.Type = make(map[string]string)
-	}
-	for _, name := range names {
-		action.Type[name] = name
-	}
 }
 
 // GetState return the state of your store
