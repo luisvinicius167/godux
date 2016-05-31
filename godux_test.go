@@ -10,6 +10,7 @@ func TestStoreStateCount(t *testing.T) {
 	}
 
 }
+
 func TestActionType(t *testing.T) {
 	store := NewStore()
 	store.SetState("count", 1)

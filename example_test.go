@@ -1,4 +1,4 @@
-package main
+package godux_test
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"github.com/luisvinicius167/godux"
 )
 
-func main() {
+func ExampleGodux() {
 	// Creating new Store
 	store := godux.NewStore()
 	// Set state
@@ -43,5 +43,6 @@ func main() {
 	// Receive new value
 	newCount := store.Dispatch(increment(10))
 	subCount := store.Dispatch(decrement(10))
-	fmt.Printf("Your Store state is: %s. Your newCount is: %s. Your subCount is: %s", store.GetState("count"), newCount, subCount)
+	fmt.Printf("Your Store state is: %d. Your newCount is: %d. Your subCount is: %d\n", store.GetState("count"), newCount, subCount)
+	// output: Your Store state is: 1. Your newCount is: 11. Your subCount is: 9
 }
