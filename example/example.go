@@ -9,6 +9,7 @@ import (
 func main() {
 	// Creating new Store
 	store := godux.NewStore()
+	// Set state
 	store.SetState("count", 1)
 
 	// Creating new Action
