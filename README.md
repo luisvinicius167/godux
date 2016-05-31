@@ -2,7 +2,7 @@
 > State Management for Go Backend applications inspired in Redux.
 
 <p align="center">
-  <img src="img/godux.png" alt="Godux">
+  <img src="img/godux_.png" alt="Godux">
 </p>
 
 <pre align="center">
