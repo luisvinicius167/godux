@@ -4,7 +4,7 @@ import "testing"
 
 func TestStoreStateCount(t *testing.T) {
 	store := NewStore()
-	store.Setstate("count", 1)
+	store.SetState("count", 1)
 	if store.GetState("count") != 1 {
 		t.Error("Expected 1 for Count State value.")
 	}
@@ -12,7 +12,7 @@ func TestStoreStateCount(t *testing.T) {
 }
 func TestActionType(t *testing.T) {
 	store := NewStore()
-	store.Setstate("count", 1)
+	store.SetState("count", 1)
 
 	increment := func(number int) Action {
 		return Action{
