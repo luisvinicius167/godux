@@ -1,6 +1,10 @@
 # godux <br/>
 > State Management for Go Backend applications inspired in Redux.
 
+<p align="center">
+  <img src="img/godux.png" alt="Godux">
+</p>
+
 <pre align="center">
 ╔═════════╗       ╔══════════╗       ╔═══════════╗       ╔═════════════════╗
 ║ Action  ║──────>║ Reducer  ║ ────> ║   Store   ║ ────> ║   Application   ║
