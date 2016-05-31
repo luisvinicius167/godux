@@ -36,7 +36,7 @@ func (s *Store) Reductor(callback func(action Action) interface{}) {
 	storestate.reductor = callback
 }
 
-// Setstate are setting the state store
+// Setstate is to sets the state store
 func (s *Store) Setstate(name string, value interface{}) {
 	if len(storestate.state) == 0 {
 		storestate.state = make(map[string]interface{})
