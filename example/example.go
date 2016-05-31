@@ -26,8 +26,8 @@ func main() {
 			Value: number,
 		}
 	}
-	// reductor function
-	reductor := func(action godux.Action) interface{} {
+	// reducer function
+	reducer := func(action godux.Action) interface{} {
 		switch action.Type {
 		case "INCREMENT":
 			return store.GetState("count").(int) + action.Value.(int)
@@ -37,8 +37,8 @@ func main() {
 			return store.GetAllState()
 		}
 	}
-	// Add your reductor function to return new values basend on your state
-	store.Reductor(reductor)
+	// Add your reducer function to return new values basend on your state
+	store.Reducer(reducer)
 	// Receive new value
 	newCount := store.Dispatch(increment(10))
 	subCount := store.Dispatch(decrement(10))

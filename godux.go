@@ -3,6 +3,7 @@ Package godux implements a state management for your backend application.
 It's inspired in Redux, but with simplest concepts.
 - State:   Your application state don't change.
 - Actions: Your action is used in reducers, to return new value based on State.
+- Reducers: Actions describe the fact that something happened, but don’t specify how the application’s state changes in response. This is the job of a reducer.
 
 This library was inspired in Redux.
 */
@@ -12,8 +13,8 @@ package godux
 type Store struct{}
 
 type storeState struct {
-	state    map[string]interface{}
-	reductor func(action Action) interface{}
+	state   map[string]interface{}
+	reducer func(action Action) interface{}
 }
 
 // Action that you create to change the State
@@ -30,10 +31,10 @@ func NewStore() *Store {
 	return new(Store)
 }
 
-// Reductor is a function that you use to return new value based on your storeState.
+// Reducer is a function that you use to return new value based on your storeState.
 // Your state don't will be changed.
-func (s *Store) Reductor(callback func(action Action) interface{}) {
-	storestate.reductor = callback
+func (s *Store) Reducer(callback func(action Action) interface{}) {
+	storestate.reducer = callback
 }
 
 // Setstate is to sets the state store
@@ -46,7 +47,7 @@ func (s *Store) Setstate(name string, value interface{}) {
 
 // Dispatch trigger your action type
 func (s *Store) Dispatch(actionType Action) interface{} {
-	return storestate.reductor(actionType)
+	return storestate.reducer(actionType)
 }
 
 // GetState return the state of your store

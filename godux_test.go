@@ -21,7 +21,7 @@ func TestActionType(t *testing.T) {
 		}
 	}
 
-	reductor := func(action Action) interface{} {
+	reducer := func(action Action) interface{} {
 		switch action.Type {
 		case "INCREMENT":
 			return store.GetState("count").(int) + action.Value.(int)
@@ -29,7 +29,7 @@ func TestActionType(t *testing.T) {
 			return store.GetAllState()
 		}
 	}
-	store.Reductor(reductor)
+	store.Reducer(reducer)
 	value := store.Dispatch(increment(1))
 	if value != 2 {
 		t.Error("The value are different. Action not correct.")

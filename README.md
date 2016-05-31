@@ -48,8 +48,8 @@ Actions are just pure function. Your Actions functions always return a godux.Act
 ### Reducers
 Like Redux Concept: "Actions describe the fact that something happened, but don’t specify how the application’s state changes in response. This is the job of a reducer."
 ```go
-    // reductor function
-	reductor := func(action godux.Action) interface{} {
+    // reducer function
+	reducer := func(action godux.Action) interface{} {
 		switch action.Type {
 		case "INCREMENT":
 			return store.GetState("count").(int) + action.Value.(int)
@@ -59,8 +59,8 @@ Like Redux Concept: "Actions describe the fact that something happened, but don�
 			return store.GetAllState()
 		}
 	}
-	// Add your reductor function to return new values basend on your state
-	store.Reductor(reductor)
+	// Add your reducer function to return new values basend on your state
+	store.Reducer(reducer)
 ```
 #### Dispatch
 Dispatch the an action is very easy.
@@ -77,8 +77,8 @@ Dispatch the an action is very easy.
   * `` godux.GetState(name string) ```: Return your Store state value.
   * `` godux.GetAllState() ```: Return all state value like a map type.
 
-* #### Store Reductor:
-  * ``` store.Reductor(func(action godux.Action)) ```: Add the reductor function in your Store.
+* #### Store Reducer:
+  * ``` store.Reducer(func(action godux.Action)) ```: Add the reducer function in your Store.
 
 * #### Store Dispatch:
   * ``` store.Dispatch(action godux.Action) ```: Dispatch your action to your Reducer.
