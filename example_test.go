@@ -6,7 +6,7 @@ import (
 	"github.com/luisvinicius167/godux"
 )
 
-func ExampleGodux() {
+func Example() {
 	// Creating new Store
 	store := godux.NewStore()
 	// Set state
