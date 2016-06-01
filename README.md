@@ -1,6 +1,7 @@
 # godux <br/>
 
 [![Join the chat at https://gitter.im/luisvinicius167/godux](https://badges.gitter.im/luisvinicius167/godux.svg)](https://gitter.im/luisvinicius167/godux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Go Report Card](https://goreportcard.com/badge/github.com/luisvinicius167/godux)](https://goreportcard.com/report/github.com/luisvinicius167/godux)
 > State Management for Go Backend applications inspired in Redux.
 
 <p align="center">
