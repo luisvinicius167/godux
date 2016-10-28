@@ -41,46 +41,49 @@ func NewStore() *Store {
 // Your state don't will be changed.
 func (s *Store) Reducer(callback func(Action) interface{}) {
 	s.storeStateLock.Lock()
+	defer s.storeStateLock.Unlock()
+
 	s.storeState.reducer = callback
-	s.storeStateLock.Unlock()
 }
 
 // SetState is to sets the state store
 func (s *Store) SetState(name string, value interface{}) {
 	s.storeStateLock.Lock()
+	defer s.storeStateLock.Unlock()
+
 	s.storeState.state[name] = value
-	s.storeStateLock.Unlock()
 }
 
 // Dispatch trigger your action type
 func (s *Store) Dispatch(actionType Action) interface{} {
 	s.storeStateLock.RLock()
+	defer s.storeStateLock.RUnlock()	
+
 	if s.storeState.reducer == nil {
 		s.storeStateLock.RUnlock()
 		panic("reducer not initialized")
 	}
 	ret := s.storeState.reducer(actionType)
-	s.storeStateLock.RUnlock()
 	return ret
 }
 
 // GetState return the state of your store
 func (s *Store) GetState(name string) interface{} {
 	s.storeStateLock.RLock()
+	defer s.storeStateLock.RUnlock()
+
 	ret := s.storeState.state[name]
-	s.storeStateLock.RUnlock()
 	return ret
 }
 
 // GetAllState return a full copy of the current state.
 func (s *Store) GetAllState() interface{} {
-	ret := map[string]interface{}{}
-
 	s.storeStateLock.RLock()
+	defer s.storeStateLock.RUnlock()
+
+	ret := map[string]interface{}{}	
 	for k, v := range s.storeState.state {
 		ret[k] = v
 	}
-	s.storeStateLock.RUnlock()
-
 	return ret
 }
